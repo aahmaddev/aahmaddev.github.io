@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adeel Khan — Software Developer & IT Consultant</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d0e0f;
+    --surface: #161718;
+    --surface2: #1f2022;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #e8e6e0;
+    --muted: #7a7870;
+    --accent: #c8f060;
+    --accent2: #4af0b8;
+    --tag-bg: rgba(200,240,96,0.08);
+    --tag-text: #c8f060;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(13,14,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono); font-size: 14px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 400; color: var(--muted);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* SECTIONS */
+  section { padding: 6rem 0; }
+  .container { max-width: 900px; margin: 0 auto; padding: 0 2.5rem; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding-top: 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 32px; height: 1px; background: var(--accent);
+  }
+  h1 {
+    font-family: var(--serif); font-size: clamp(2.6rem, 5vw, 3.8rem);
+    font-weight: 400; line-height: 1.1;
+    color: var(--text); margin-bottom: 1.5rem;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 16px; color: var(--muted);
+    line-height: 1.8; margin-bottom: 2rem;
+  }
+  .hero-cta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: var(--accent); color: #0d0e0f;
+    font-family: var(--sans); font-size: 13px; font-weight: 600;
+    text-decoration: none; border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.04em;
+  }
+  .btn-primary:hover { background: #d4f570; transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: transparent; color: var(--text);
+    font-family: var(--sans); font-size: 13px; font-weight: 400;
+    text-decoration: none; border-radius: 4px;
+    border: 1px solid var(--border2);
+    transition: border-color 0.2s, color 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Hero visual */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+  }
+  .terminal {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    border-radius: 10px; overflow: hidden;
+    width: 100%; max-width: 380px;
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+  .terminal-bar {
+    padding: 0.75rem 1rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #febc2e; }
+  .dot-g { background: #28c840; }
+  .terminal-body { padding: 1.5rem; font-family: var(--mono); font-size: 13px; line-height: 1.9; }
+  .t-muted { color: var(--muted); }
+  .t-green { color: var(--accent); }
+  .t-blue { color: var(--accent2); }
+  .t-white { color: var(--text); }
+  .cursor {
+    display: inline-block; width: 8px; height: 14px;
+    background: var(--accent); vertical-align: middle;
+    animation: blink 1s step-end infinite;
+  }
+
+  /* ABOUT */
+  #about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
+  .section-label {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    color: var(--accent); letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 400; line-height: 1.2;
+    color: var(--text); margin-bottom: 1.5rem;
+  }
+  .about-text { color: var(--muted); font-size: 15px; line-height: 1.9; }
+  .about-text p + p { margin-top: 1rem; }
+  .stats-grid { display: grid; gap: 1.5rem; }
+  .stat-card {
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.25rem;
+    background: var(--bg);
+  }
+  .stat-num {
+    font-family: var(--serif); font-size: 2.4rem;
+    color: var(--accent); line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.5rem;
+  }
+  .skill-group-title {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--accent2); letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--tag-bg); color: var(--tag-text);
+    font-family: var(--mono); font-size: 11px;
+    padding: 3px 10px; border-radius: 3px;
+    border: 1px solid rgba(200,240,96,0.15);
+  }
+  .tag.teal {
+    background: rgba(74,240,184,0.08); color: var(--accent2);
+    border-color: rgba(74,240,184,0.15);
+  }
+  .tag.gray {
+    background: rgba(255,255,255,0.04); color: var(--muted);
+    border-color: var(--border);
+  }
+
+  /* PROJECTS */
+  .projects-list { display: grid; gap: 1.5rem; }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 2rem;
+    display: grid; grid-template-columns: 1fr auto;
+    gap: 1rem; align-items: start;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--border2); }
+  .project-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+  .project-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--tag-bg); border: 1px solid rgba(200,240,96,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .project-name {
+    font-family: var(--serif); font-size: 1.25rem;
+    color: var(--text);
+  }
+  .project-desc { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .project-num {
+    font-family: var(--mono); font-size: 11px;
+    color: var(--border2);
+    align-self: start;
+  }
+
+  /* EXPERIENCE */
+  .exp-list { display: grid; gap: 0; }
+  .exp-item {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 2rem; padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date { font-family: var(--mono); font-size: 12px; color: var(--muted); padding-top: 4px; }
+  .exp-company { font-weight: 500; font-size: 15px; color: var(--text); margin-bottom: 0.25rem; }
+  .exp-role { font-size: 13px; color: var(--accent2); margin-bottom: 0.75rem; }
+  .exp-desc { font-size: 14px; color: var(--muted); line-height: 1.8; }
+
+  /* CONTACT */
+  #contact { background: var(--surface); }
+  .contact-inner {
+    text-align: center; max-width: 600px; margin: 0 auto;
+  }
+  .contact-inner h2 { margin-bottom: 1rem; }
+  .contact-inner p { color: var(--muted); font-size: 15px; margin-bottom: 2.5rem; }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer {
+    padding: 2rem 2.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 12px; color: var(--muted);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; } 50% { opacity: 0; }
+  }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+  .delay-4 { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .hero-grid, .about-grid, .skills-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .project-card { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AK.dev</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow fade-up">Available for projects</div>
+        <h1 class="fade-up delay-1">Software Developer<br>& <em>IT Consultant</em></h1>
+        <p class="hero-desc fade-up delay-2">
+          10+ years building backend systems, automating workflows, and deploying custom ERP solutions.
+          Based in Pakistan — working with clients globally.
+        </p>
+        <div class="hero-cta fade-up delay-3">
+          <a href="#contact" class="btn-primary">Get in touch ↗</a>
+          <a href="#projects" class="btn-ghost">View my work</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+          </div>
+          <div class="terminal-body">
+            <div><span class="t-muted">$ </span><span class="t-green">whoami</span></div>
+            <div class="t-white">Adeel Khan</div>
+            <div style="margin-top:0.5rem"><span class="t-muted">$ </span><span class="t-green">skills --list</span></div>
+            <div><span class="t-blue">›</span> Python · Django · FastAPI</div>
+            <div><span class="t-blue">›</span> Odoo · ERP · POS</div>
+            <div><span class="t-blue">›</span> Docker · AWS · CI/CD</div>
+            <div><span class="t-blue">›</span> Pytest · Selenium</div>
+            <div style="margin-top:0.5rem"><span class="t-muted">$ </span><span class="t-green">experience</span></div>
+            <div class="t-white">10+ years</div>
+            <div style="margin-top:0.5rem"><span class="t-muted">$ </span><span class="t-green">status</span></div>
+            <div><span class="t-green">●</span> <span class="t-white">Open to work</span> <span class="cursor"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label">About</div>
+        <h2>Building reliable software,<br>not just code</h2>
+        <div class="about-text">
+          <p>I'm a software developer and IT consultant based in Rawalpindi, Pakistan, with over a decade of hands-on experience across backend development, ERP customization, and test automation.</p>
+          <p>My work spans full-stack Python development, Odoo ERP deployments and custom module development, network security automation, and cloud infrastructure. I've helped startups, restaurants, and enterprise clients build systems that actually work in production.</p>
+          <p>I care about clean architecture, thorough documentation, and solutions that don't require constant hand-holding after delivery.</p>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Years of experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Domains: backend, ERP, automation</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">∞</div>
+          <div class="stat-label">Coffee consumed debugging</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Skills</div>
+    <h2 style="margin-bottom:2.5rem">What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Backend</div>
+        <div class="skill-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Django</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">Flask</span>
+          <span class="tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">ERP & Odoo</div>
+        <div class="skill-tags">
+          <span class="tag">Odoo 16/17/19</span>
+          <span class="tag">POS Modules</span>
+          <span class="tag">Custom Modules</span>
+          <span class="tag">OWL/JS</span>
+          <span class="tag">QWeb</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Test Automation</div>
+        <div class="skill-tags">
+          <span class="tag teal">Pytest</span>
+          <span class="tag teal">Selenium</span>
+          <span class="tag teal">Modbus RTU</span>
+          <span class="tag teal">Jenkins</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Infrastructure</div>
+        <div class="skill-tags">
+          <span class="tag gray">Docker</span>
+          <span class="tag gray">Nginx</span>
+          <span class="tag gray">AWS</span>
+          <span class="tag gray">GCP</span>
+          <span class="tag gray">Linux</span>
+          <span class="tag gray">Kubernetes</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Monitoring & CI</div>
+        <div class="skill-tags">
+          <span class="tag gray">Datadog</span>
+          <span class="tag gray">GitHub Actions</span>
+          <span class="tag gray">CI/CD</span>
+          <span class="tag gray">IoT ERP</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Other</div>
+        <div class="skill-tags">
+          <span class="tag gray">Network Security</span>
+          <span class="tag gray">ML Pipelines</span>
+          <span class="tag gray">PostgreSQL</span>
+          <span class="tag gray">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 style="margin-bottom:2.5rem">Selected work</h2>
+    <div class="projects-list">
+
+      <div class="project-card">
+        <div>
+          <div class="project-top">
+            <div class="project-icon">🍕</div>
+            <div class="project-name">Galaxy Pizza POS</div>
+          </div>
+          <p class="project-desc">Custom Odoo 19 POS module for a restaurant chain with three independent terminals (Eat In, Takeout, Delivery). Standalone Docker deployment on Windows 11 with Nginx reverse proxy, custom receipt formatting for thermal printers, role-based access control, and delivery charge handling.</p>
+          <div class="project-stack">
+            <span class="tag">Odoo 19</span>
+            <span class="tag">OWL/JS</span>
+            <span class="tag">Python</span>
+            <span class="tag">Docker</span>
+            <span class="tag teal">Nginx</span>
+            <span class="tag teal">QWeb</span>
+          </div>
+        </div>
+        <div class="project-num">01</div>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <div class="project-top">
+            <div class="project-icon">🏥</div>
+            <div class="project-name">Clinical ML Model Runner</div>
+          </div>
+          <p class="project-desc">Designed and maintained ML model execution pipelines for clinical applications at EonHealth. Built infrastructure for running inference models in production with monitoring, reliability, and compliance requirements of the healthcare domain.</p>
+          <div class="project-stack">
+            <span class="tag">Python</span>
+            <span class="tag">ML Pipelines</span>
+            <span class="tag teal">AWS</span>
+            <span class="tag teal">Datadog</span>
+            <span class="tag gray">FastAPI</span>
+          </div>
+        </div>
+        <div class="project-num">02</div>
+      </div>
+
+      <div class="project-card">
+        <div>
+          <div class="project-top">
+            <div class="project-icon">🔌</div>
+            <div class="project-name">IoT ERP CI/CD Pipeline</div>
+          </div>
+          <p class="project-desc">Built end-to-end CI/CD infrastructure for an IoT ERP system at 10Pearls. Automated testing, deployment, and integration pipelines connecting hardware device data to enterprise resource planning workflows.</p>
+          <div class="project-stack">
+            <span class="tag">Jenkins</span>
+            <span class="tag">Kubernetes</span>
+            <span class="tag teal">AWS</span>
+            <span class="tag teal">Pytest</span>
+            <span class="tag gray">CI/CD</span>
+          </div>
+        </div>
+        <div class="project-num">03</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 style="margin-bottom:2.5rem">Where I've worked</h2>
+    <div class="exp-list">
+      <div class="exp-item">
+        <div class="exp-date">2023 — Present</div>
+        <div>
+          <div class="exp-company">Independent Consultant</div>
+          <div class="exp-role">Software Developer & IT Consultant</div>
+          <p class="exp-desc">Custom Odoo module development and deployment for restaurant and retail clients. Backend Python development, ERP customization, and remote infrastructure management.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2021 — 2023</div>
+        <div>
+          <div class="exp-company">EonHealth</div>
+          <div class="exp-role">ML Engineer</div>
+          <p class="exp-desc">Built and maintained ML model runners for clinical applications. Production inference pipelines, monitoring with Datadog, and compliance-aware infrastructure on AWS.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2019 — 2021</div>
+        <div>
+          <div class="exp-company">10Pearls</div>
+          <div class="exp-role">DevOps / Backend Engineer</div>
+          <p class="exp-desc">CI/CD pipeline development for IoT ERP products. Jenkins, Kubernetes, and AWS infrastructure. Bridging hardware device telemetry with enterprise software systems.</p>
+        </div>
+      </div>
+      <div class="exp-item">
+        <div class="exp-date">2017 — 2019</div>
+        <div>
+          <div class="exp-company">Ebryx</div>
+          <div class="exp-role">Network Security Automation Engineer</div>
+          <p class="exp-desc">Automated test frameworks for network security products. Selenium, Pytest, and custom tooling for end-to-end validation of security appliances.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="section-label" style="text-align:center">Contact</div>
+      <h2>Let's work together</h2>
+      <p>Whether you need a custom Odoo module, backend API, or automation framework — I'm open to projects, contracts, and full-time roles.</p>
+      <div class="contact-links">
+        <a href="mailto:adeel@example.com" class="btn-primary">adeel@example.com ↗</a>
+        <a href="https://linkedin.com/in/adeelkhan" class="btn-ghost">LinkedIn</a>
+        <a href="https://github.com/adeelkhan" class="btn-ghost">GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Adeel Khan</span>
+  <span>Rawalpindi, Pakistan</span>
+</footer>
+
+</body>
+</html>
